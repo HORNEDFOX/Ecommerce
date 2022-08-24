@@ -22,7 +22,6 @@ class HotSalesCard extends StatelessWidget {
                  image: NetworkImage("https://content.api.news/v3/images/bin/1e1c42d1b014dc9b8a56dcd7213aac21"),
                   fit: BoxFit.cover,
                 ),
-                color: Colors.amber,
                     borderRadius: BorderRadius.circular(10),
               ),
               child: Container(

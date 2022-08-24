@@ -19,6 +19,13 @@ class CardCategory extends StatelessWidget {
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   color: Colors.white,
+                  boxShadow: [
+                    BoxShadow(
+                      color: Color.fromRGBO(204, 204, 204, 0.2),
+                      offset: Offset(1.0, 1.0),
+                      blurRadius: 12.0,
+                    ),
+                  ],
                 ),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,

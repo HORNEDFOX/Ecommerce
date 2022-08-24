@@ -5,13 +5,13 @@ class AppBarHome extends StatelessWidget implements PreferredSizeWidget {
   const AppBarHome({Key? key}) : super(key: key);
 
   @override
-  Size get preferredSize => const Size.fromHeight(50);
+  Size get preferredSize => const Size.fromHeight(30);
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Container(
-        margin: new EdgeInsets.only(left: 45, right: 17),
+        margin: new EdgeInsets.only(left: 45, right: 17, top: 10),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.center,

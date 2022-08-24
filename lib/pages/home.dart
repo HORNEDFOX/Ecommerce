@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:testecommerce/widgets/app_bar.dart';
+import 'package:testecommerce/widgets/best_seller_card.dart';
 import 'package:testecommerce/widgets/category_widget.dart';
 import 'package:testecommerce/widgets/hot_sales.dart';
-import 'package:testecommerce/widgets/hot_sales_card.dart';
 import 'package:testecommerce/widgets/search_text.dart';
 
 class Home extends StatelessWidget {
@@ -17,6 +17,7 @@ class Home extends StatelessWidget {
         slivers: [
           SliverAppBar(
             backgroundColor: Color.fromRGBO(248, 248, 248, 1),
+            toolbarHeight: 40,
             floating: false,
             pinned: true,
             elevation: 0.0,
@@ -45,24 +46,65 @@ class Home extends StatelessWidget {
             ),
           ),
           SliverToBoxAdapter(
-                  child: HotSales(),
+            child: HotSales(),
           ),
-          SliverGrid(
-            gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-              maxCrossAxisExtent: 200.0,
-              mainAxisSpacing: 10.0,
-              crossAxisSpacing: 10.0,
-              childAspectRatio: 4.0,
-            ),
-            delegate: SliverChildBuilderDelegate(
-                  (BuildContext context, int index) {
-                return Container(
-                  alignment: Alignment.center,
-                  color: Colors.teal[100 * (index % 9)],
-                  child: Text('grid item $index'),
-                );
-              },
-              childCount: 50,
+          SliverToBoxAdapter(
+            child: Container(
+                child: Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Column(
+                      children: [
+                        Container(
+                          padding: new EdgeInsets.only(left: 25),
+                          child: Text(
+                            "Best Seller",
+                            style: TextStyle(
+                              fontSize: 25,
+                              fontWeight: FontWeight.w700,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    Column(
+                      children: [
+                        Container(
+                            padding: new EdgeInsets.only(right: 17),
+                            child: TextButton(
+                                onPressed: () {},
+                                child: Text(
+                                  "view all",
+                                  style: TextStyle(
+                                    color: Color.fromRGBO(255, 110, 78, 1),
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.w400,
+                                  ),
+                                ))),
+                      ],
+                    ),
+                  ],
+                ),
+              ],
+            )),
+          ),
+          SliverPadding(
+            padding: const EdgeInsets.symmetric(horizontal: 21),
+            sliver: SliverGrid(
+              gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+                maxCrossAxisExtent: 200.0,
+                mainAxisSpacing: 12.0,
+                crossAxisSpacing: 14.0,
+                childAspectRatio: 0.70,
+              ),
+              delegate: SliverChildBuilderDelegate(
+                (BuildContext context, int index) {
+                  return BestSellerCard();
+                },
+                childCount: 20,
+              ),
             ),
           ),
         ],

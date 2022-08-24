@@ -15,11 +15,16 @@ class _SearchTextState extends State<SearchText> {
       child: Row(
         children: [
           Container(
-            padding: new EdgeInsets.only(left: 35, right: 11),
-            width: MediaQuery.of(context).size.width/1.15,
+            margin: new EdgeInsets.only(left: 35, right: 11),
+            width: MediaQuery.of(context).size.width/1.35,
             height: 34,
             alignment: Alignment.center,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(50.0),
+        color: Colors.white,
+      ),
             child: TextFormField(
+              style: TextStyle(fontSize: 12, color: Color.fromRGBO(1, 0, 53, 0.5), fontWeight: FontWeight.w400),
               cursorColor: Color.fromRGBO(255, 110, 78, 1),
               //controller: txtQuery,
               //onChanged: search,
