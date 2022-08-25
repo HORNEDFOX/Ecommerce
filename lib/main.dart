@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:testecommerce/pages/home.dart';
+import 'package:testecommerce/pages/navigation_widget.dart';
 import 'package:testecommerce/theme/light_theme.dart';
 
 void main() {
@@ -16,7 +17,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: LightTheme.lightTheme,
-      home: const Home(),
+      home: const NavigationWidget(),
     );
   }
 }
