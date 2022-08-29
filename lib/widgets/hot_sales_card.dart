@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:testecommerce/bloc/models/home_store_class.dart';
 
 class HotSalesCard extends StatelessWidget {
-  const HotSalesCard({Key? key}) : super(key: key);
+  final HomeStore element;
+  const HotSalesCard({Key? key, required this.element}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +21,7 @@ class HotSalesCard extends StatelessWidget {
               width: MediaQuery.of(context).size.width,
               decoration: BoxDecoration(
                 image: DecorationImage(
-                 image: NetworkImage("https://content.api.news/v3/images/bin/1e1c42d1b014dc9b8a56dcd7213aac21"),
+                 image: NetworkImage(element.picture.toString()),
                   fit: BoxFit.cover,
                 ),
                     borderRadius: BorderRadius.circular(10),
@@ -32,6 +34,7 @@ class HotSalesCard extends StatelessWidget {
                 children: [
                   Row(
                     children: [
+                      element.is_new == true ?
                             Container(
                               height: 31,
                               width: 31,
@@ -50,7 +53,8 @@ class HotSalesCard extends StatelessWidget {
                                   ),),
                                 ],
                               ),
-                            ),
+                            ) : Container(height: 31,
+                        width: 31,),
                     ],
                   ),
                   Container(
@@ -59,13 +63,13 @@ class HotSalesCard extends StatelessWidget {
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text("Iphone 12", style: TextStyle(
+                            Text("${element.title}", style: TextStyle(
                               color: Colors.white,
                               fontSize: 30,
                               fontWeight: FontWeight.w700,
                             ),),
                             SizedBox(height: 5,),
-                            Text("Súper. Mega. Rápido.", style: TextStyle(
+                            Text("${element.subtitle}", style: TextStyle(
                               color: Colors.white,
                               fontSize: 11,
                               fontWeight: FontWeight.w400,

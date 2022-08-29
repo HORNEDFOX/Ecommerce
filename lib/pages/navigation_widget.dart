@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:testecommerce/pages/cart.dart';
 import 'package:testecommerce/pages/home.dart';
 import 'package:testecommerce/pages/product.dart';
 
@@ -17,7 +18,7 @@ class _NavigationWidgetState extends State<NavigationWidget> {
   final List<Widget> _widgetOptions = <Widget>[
     const Home(),
     const Product(),
-    Container(),
+    const Cart(),
   ];
 
   void _onItemTapped(int index) {
@@ -34,6 +35,7 @@ class _NavigationWidgetState extends State<NavigationWidget> {
       ),
       bottomNavigationBar: Container(
         decoration: BoxDecoration(
+          color: Colors.transparent,
           borderRadius: BorderRadius.only(
               topRight: Radius.circular(30), topLeft: Radius.circular(30)),
           boxShadow: [

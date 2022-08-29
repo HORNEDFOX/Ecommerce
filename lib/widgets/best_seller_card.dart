@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:testecommerce/bloc/models/best_seller_class.dart';
 
 class BestSellerCard extends StatefulWidget {
-  const BestSellerCard({Key? key}) : super(key: key);
+  final BestSeller bestSeller;
+  const BestSellerCard({Key? key, required this.bestSeller}) : super(key: key);
 
   @override
   _BestSellerCardState createState() => _BestSellerCardState();
@@ -39,8 +41,7 @@ class _BestSellerCardState extends State<BestSellerCard> {
                           width: MediaQuery.of(context).size.width,
                           decoration: BoxDecoration(
                             image: DecorationImage(
-                              image: NetworkImage(
-                                  "https://i01.appmifile.com/webfile/globalimg/gaoruijia/RN-10-PRO-blue.png"),
+                              image: NetworkImage(this.widget.bestSeller.picture.toString()),
                               fit: BoxFit.cover,
                             ),
                           ),
@@ -48,7 +49,7 @@ class _BestSellerCardState extends State<BestSellerCard> {
                         Row(
                           children: [
                             Text(
-                              "\$1,047",
+                              "\$${this.widget.bestSeller.price_without_discount}",
                               style: TextStyle(
                                 fontSize: 18,
                                 fontWeight: FontWeight.w700,
@@ -58,7 +59,7 @@ class _BestSellerCardState extends State<BestSellerCard> {
                               width: 7,
                             ),
                             Text(
-                              "\$1,500",
+                              "\$${this.widget.bestSeller.discount_price}",
                               style: TextStyle(
                                 fontSize: 10,
                                 fontWeight: FontWeight.w500,
@@ -69,7 +70,7 @@ class _BestSellerCardState extends State<BestSellerCard> {
                           ],
                         ),
                         Text(
-                          "Samsung Galaxy s20 Ultra",
+                          "${this.widget.bestSeller.title}",
                           style: TextStyle(
                             fontSize: 11,
                             fontWeight: FontWeight.w400,

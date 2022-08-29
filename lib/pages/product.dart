@@ -1,6 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:testecommerce/widgets/app_bar_product.dart';
+import 'package:testecommerce/widgets/product_detail.dart';
 
 class Product extends StatefulWidget {
   const Product({Key? key}) : super(key: key);
@@ -17,17 +18,14 @@ class _ProductState extends State<Product> {
       body: CustomScrollView(slivers: [
         SliverAppBar(
           backgroundColor: Color.fromRGBO(248, 248, 248, 1),
-          toolbarHeight: 60,
+          toolbarHeight: 80,
           floating: false,
-          pinned: true,
+          pinned: false,
           elevation: 0.0,
           flexibleSpace: const FlexibleSpaceBar(
             background: AppBarProduct(),
           ),
         ),
-    SliverToBoxAdapter(
-      child: SizedBox(height: 30,),
-    ),
         SliverToBoxAdapter(
           child: Expanded(
               child: CarouselSlider.builder(
@@ -72,6 +70,7 @@ class _ProductState extends State<Product> {
           child: SizedBox(height: 20,),
         ),
         SliverToBoxAdapter(
+          child: ProductDetail(),
         ),
       ]),
     );

@@ -8,12 +8,15 @@ class AppBarProduct extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Container(
-        margin: new EdgeInsets.only(left: 42, right: 35, top: 15),
+        margin: new EdgeInsets.only(left: 42, right: 35, top: 5),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Column(children: [
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
               Container(
                 height: 37,
                 width: 37,
