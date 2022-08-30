@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:testecommerce/bloc/models/product_class.dart';
 
 import 'CartCard.dart';
 
 class CartDetail extends StatelessWidget {
-  const CartDetail({Key? key}) : super(key: key);
+  final List<Product> element;
+  const CartDetail({Key? key, required this.element}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -25,15 +27,13 @@ class CartDetail extends StatelessWidget {
           //mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-                  ListView(
+                  ListView.builder(
+                    itemCount: element.length,
                     scrollDirection: Axis.vertical,
                     shrinkWrap: true,
-                    children: <Widget>[
-                      CartCard(),
-                      CartCard(),
-                      CartCard(),
-                      CartCard(),
-                    ],
+                    itemBuilder: (BuildContext context, int index){
+                      return CartCard(element: element.elementAt(index),);
+                    }
                   ),
             SizedBox(
               height: 12,

@@ -6,8 +6,11 @@ import 'package:testecommerce/widgets/capacity_list.dart';
 import 'package:testecommerce/widgets/color_list.dart';
 import 'package:testecommerce/widgets/shop_appbar.dart';
 
+import '../bloc/models/product_class.dart';
+
 class ProductDetail extends StatefulWidget {
-  const ProductDetail({Key? key}) : super(key: key);
+  final Product element;
+  const ProductDetail({Key? key, required this.element}) : super(key: key);
 
   @override
   _ProductDetailState createState() => _ProductDetailState();
@@ -16,6 +19,8 @@ class ProductDetail extends StatefulWidget {
 class _ProductDetailState extends State<ProductDetail>
     with TickerProviderStateMixin {
   late TabController _tabController;
+  int selectColor = 0;
+  int selectCapacity = 0;
 
   @override
   void initState() {
@@ -82,7 +87,7 @@ class _ProductDetailState extends State<ProductDetail>
                   Column(
                     children: [
                       Text(
-                        "Galaxy Note 20 Ultra",
+                        "${this.widget.element.title}",
                         style: TextStyle(
                           fontSize: 24,
                           fontWeight: FontWeight.w500,
@@ -118,7 +123,7 @@ class _ProductDetailState extends State<ProductDetail>
               ),
             ),
             RatingBar.builder(
-              initialRating: 3,
+              initialRating: this.widget.element.rating!,
               minRating: 1,
               direction: Axis.horizontal,
               allowHalfRating: true,
@@ -164,7 +169,7 @@ class _ProductDetailState extends State<ProductDetail>
                 controller: _tabController,
                 children: <Widget>[
                   Container(
-                    child: ShopAppBar(),
+                    child: ShopAppBar(element: this.widget.element,),
                   ),
                   Container(),
                   Container(),
@@ -188,27 +193,43 @@ class _ProductDetailState extends State<ProductDetail>
                 Expanded(
                   child: Container(
                     height: 45.0,
-                    child: ListView(
+                    child: ListView.builder(
+                      itemCount: this.widget.element.color!.length,
                       scrollDirection: Axis.horizontal,
                       shrinkWrap: true,
-                      children: <Widget>[
-                        ColorList(),
-                        ColorList(),
-                        ColorList(),
-                      ],
+                      itemBuilder: (BuildContext context, int index)
+                      {
+                        return InkWell(
+                          onTap: ()
+                          {
+                            setState(() {
+                              _onSelectColor(index);
+                            });
+                          },
+                            child: ColorList(color: this.widget.element.color!.elementAt(index), selected: selectColor == index ? true : false,),
+                        );
+                      }
                     ),
                   ),
                 ),
                 Expanded(
                   child: Container(
                     height: 40.0,
-                    child: ListView(
+                    child: ListView.builder(
+                      itemCount: this.widget.element.capacity!.length,
                       scrollDirection: Axis.horizontal,
                       shrinkWrap: true,
-                      children: <Widget>[
-                        CapacityList(),
-                        CapacityList(),
-                      ],
+                        itemBuilder: (BuildContext context, int index) {
+                          return InkWell(
+                            onTap: ()
+                            {
+                              setState(() {
+                                _onSelectCapacity(index);
+                              });
+                            },
+                              child: CapacityList(capacity: this.widget.element.capacity!.elementAt(index), selected: selectCapacity == index ? true : false,),
+                          );
+                        }
                     ),
                   ),
                 ),
@@ -237,7 +258,7 @@ class _ProductDetailState extends State<ProductDetail>
                             fontSize: 20,
                             fontWeight: FontWeight.w700,
                           ),),
-                          Text("\$1,500.00", style: TextStyle(
+                          Text("\$${this.widget.element.price.toStringAsFixed(2)}", style: TextStyle(
                             color: Colors.white,
                             fontSize: 20,
                             fontWeight: FontWeight.w700,
@@ -260,5 +281,15 @@ class _ProductDetailState extends State<ProductDetail>
         ),
       ),
     );
+  }
+
+  void _onSelectColor(int index)
+  {
+    selectColor = index;
+  }
+
+  void _onSelectCapacity(int index)
+  {
+    selectCapacity = index;
   }
 }

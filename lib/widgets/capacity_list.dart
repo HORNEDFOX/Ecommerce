@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 class CapacityList extends StatefulWidget {
-  const CapacityList({Key? key}) : super(key: key);
+  final String capacity;
+  bool selected;
+  CapacityList({Key? key, required this.capacity, required this.selected}) : super(key: key);
 
   @override
   _CapacityListState createState() => _CapacityListState();
@@ -19,16 +21,16 @@ class _CapacityListState extends State<CapacityList> {
         width: 70,
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10),
-          color: Color.fromRGBO(255, 110, 78, 1),
+          color: this.widget.selected == true ? Color.fromRGBO(255, 110, 78, 1) : Colors.transparent,
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Text("128 GB", style: TextStyle(
+            Text("${this.widget.capacity} GB", style: TextStyle(
               fontSize: 13,
               fontWeight: FontWeight.w700,
-              color: Colors.white,
+              color: this.widget.selected == true ? Colors.white : Color.fromRGBO(141, 141, 141, 1),
             ),),
           ],
         ),

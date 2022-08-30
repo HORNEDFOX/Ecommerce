@@ -3,7 +3,9 @@ import 'package:flutter_svg/svg.dart';
 import 'package:flutter_hex_color/flutter_hex_color.dart';
 
 class ColorList extends StatefulWidget {
-  const ColorList({Key? key}) : super(key: key);
+  final String color;
+  bool selected;
+  ColorList({Key? key, required this.color, required this.selected}) : super(key: key);
 
   @override
   _ColorListState createState() => _ColorListState();
@@ -21,13 +23,13 @@ class _ColorListState extends State<ColorList> {
               width: 45,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: HexColor("#010035"),
+                color: HexColor("${this.widget.color}"),
               ),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  SvgPicture.asset("assets/check.svg"),
+                  this.widget.selected == true ? SvgPicture.asset("assets/check.svg") : Container(),
                 ],
               ),
             ),

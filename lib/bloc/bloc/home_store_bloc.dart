@@ -22,7 +22,7 @@ class HomeStoreBloc extends Bloc<HomeStoreEvent,HomeStoreState>{
 
   Future<void> _onLoadHomeStoreEvent(LoadHomeStoreEvent event, Emitter<HomeStoreState> emit) async {
     try {
-      final List<HomeStore> bestSeller = await _homestoreRepository.getBestSeller();
+      final List<HomeStore> bestSeller = await _homestoreRepository.getHomeStore();
       emit(HomeStoreLoadedState(bestSeller));
     } catch (e) {
       emit(HomeStoreErrorState(e.toString()));

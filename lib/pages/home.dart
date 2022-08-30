@@ -42,7 +42,7 @@ class Home extends StatelessWidget {
                 floating: false,
                 pinned: false,
                 elevation: 0.0,
-                flexibleSpace: const FlexibleSpaceBar(
+                flexibleSpace: FlexibleSpaceBar(
                   background: CategoryList(),
                 ),
               ),

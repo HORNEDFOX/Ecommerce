@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:testecommerce/bloc/models/best_seller_class.dart';
+import 'package:testecommerce/pages/product.dart';
 
 class BestSellerCard extends StatefulWidget {
   final BestSeller bestSeller;
@@ -17,7 +18,14 @@ class _BestSellerCardState extends State<BestSellerCard> {
       color: Colors.transparent,
       elevation: 30,
       shadowColor: Color.fromRGBO(204, 204, 204, 0.1),
-      child: Container(
+      child: new InkWell(
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const Product()),
+          );
+    },
+    child:Container(
         child: Column(
           children: [
             Container(
@@ -49,7 +57,7 @@ class _BestSellerCardState extends State<BestSellerCard> {
                         Row(
                           children: [
                             Text(
-                              "\$${this.widget.bestSeller.price_without_discount}",
+                              "\$${this.widget.bestSeller.price_without_discount.toStringAsFixed(2)}",
                               style: TextStyle(
                                 fontSize: 18,
                                 fontWeight: FontWeight.w700,
@@ -59,7 +67,7 @@ class _BestSellerCardState extends State<BestSellerCard> {
                               width: 7,
                             ),
                             Text(
-                              "\$${this.widget.bestSeller.discount_price}",
+                              "\$${this.widget.bestSeller.discount_price.toStringAsFixed(2)}",
                               style: TextStyle(
                                 fontSize: 10,
                                 fontWeight: FontWeight.w500,
@@ -119,6 +127,7 @@ class _BestSellerCardState extends State<BestSellerCard> {
             ),
           ],
         ),
+      ),
       ),
     );
   }

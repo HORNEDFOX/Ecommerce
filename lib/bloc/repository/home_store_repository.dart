@@ -6,7 +6,7 @@ class HomeStoreRepository
 {
   final api = "https://run.mocky.io/v3/654bd15e-b121-49ba-a588-960956b15175";
 
-  Future<List<HomeStore>> getBestSeller() async {
+  Future<List<HomeStore>> getHomeStore() async {
     final response = await http.get(Uri.parse(api));
     if(response.statusCode == 200) {
       final jsonData = json.decode(response.body);

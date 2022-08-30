@@ -1,9 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:testecommerce/bloc/models/product_class.dart';
 
 class CartCard extends StatefulWidget {
-  const CartCard({Key? key}) : super(key: key);
+  final Product element;
+  const CartCard({Key? key, required this.element}) : super(key: key);
 
   @override
   _CartCardState createState() => _CartCardState();
@@ -47,9 +49,9 @@ class _CartCardState extends State<CartCard> {
                       ),
                       child: Container(
                         decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
                           image: DecorationImage(
-                            image: NetworkImage(
-                                "https://i01.appmifile.com/webfile/globalimg/gaoruijia/RN-10-PRO-blue.png"),
+                            image: NetworkImage(this.widget.element.image!.toString()),
                             fit: BoxFit.cover,
                           ),
                         ),
@@ -64,7 +66,7 @@ class _CartCardState extends State<CartCard> {
                         SizedBox(
                           width: 130,
                           child:
-                        Text("Galaxy Note 20 Ultra",style: TextStyle(
+                        Text("${this.widget.element.title}",style: TextStyle(
                           fontWeight: FontWeight.w500,
                           fontSize: 20,
                           color: Colors.white,
@@ -74,7 +76,7 @@ class _CartCardState extends State<CartCard> {
                         ),
                         ),
                         SizedBox(height: 8,),
-                        Text("\$3000.00",style: TextStyle(
+                        Text("\$${this.widget.element.price.toStringAsFixed(2)}",style: TextStyle(
                           fontWeight: FontWeight.w500,
                           fontSize: 20,
                           color: Color.fromRGBO(255, 110, 78, 1),

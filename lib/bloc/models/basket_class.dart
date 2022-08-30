@@ -10,9 +10,9 @@ class Basket
   Basket({required this.id, this.product, required this.delivery, required this.total});
 
   factory Basket.fromJSON(Map<String, dynamic> json) => Basket(
-    id: json['id'],
-    delivery: json['delivery'],
-    total: json['total'],
-    product: List<dynamic>.from(json['basket']).map((e) => Product.fromJSON(e)).toList(),
+    id: int.parse(json['id'].toString()),
+    delivery: json['delivery'] as String,
+    total: double.parse(json['total'].toString()),
+    product: List<dynamic>.from(json['basket']).map((e) => Product.fromJSONBasket(e)).toList(),
   );
 }

@@ -29,7 +29,9 @@ class AppBarProduct extends StatelessWidget {
                         padding: const EdgeInsets.all(11),
                         child: SvgPicture.asset("assets/back.svg"),
                       ),
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.pop(context);
+                      },
                     ),
                   ),
                 ),

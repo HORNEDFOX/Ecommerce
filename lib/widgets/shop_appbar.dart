@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+import '../bloc/models/product_class.dart';
+
 class ShopAppBar extends StatelessWidget {
-  const ShopAppBar({Key? key}) : super(key: key);
+  final Product element;
+  const ShopAppBar({Key? key, required this.element}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +26,7 @@ class ShopAppBar extends StatelessWidget {
               height: 9,
             ),
             Text(
-              "Exynos 990",
+              "${element.CPU}",
               style: TextStyle(
                 fontSize: 11,
                 fontWeight: FontWeight.w400,
@@ -46,7 +49,7 @@ class ShopAppBar extends StatelessWidget {
               height: 9,
             ),
             Text(
-              "108 + 12 mp",
+              "${element.camera}",
               style: TextStyle(
                 fontSize: 11,
                 fontWeight: FontWeight.w400,
@@ -69,7 +72,7 @@ class ShopAppBar extends StatelessWidget {
               height: 9,
             ),
             Text(
-              "8 GB",
+              "${element.ssd}",
               style: TextStyle(
                 fontSize: 11,
                 fontWeight: FontWeight.w400,
@@ -92,7 +95,7 @@ class ShopAppBar extends StatelessWidget {
               height: 9,
             ),
             Text(
-              "256 GB",
+              "${element.sd}",
               style: TextStyle(
                 fontSize: 11,
                 fontWeight: FontWeight.w400,
