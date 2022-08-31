@@ -13,14 +13,18 @@ class ProductDetail extends StatefulWidget {
   const ProductDetail({Key? key, required this.element}) : super(key: key);
 
   @override
-  _ProductDetailState createState() => _ProductDetailState();
+  _ProductDetailState createState() => _ProductDetailState(favorites: element.is_favorites!);
 }
 
 class _ProductDetailState extends State<ProductDetail>
     with TickerProviderStateMixin {
+
+  _ProductDetailState({required this.favorites});
+
   late TabController _tabController;
   int selectColor = 0;
   int selectCapacity = 0;
+  bool favorites;
 
   @override
   void initState() {
@@ -107,12 +111,16 @@ class _ProductDetailState extends State<ProductDetail>
                             child: InkWell(
                               child: Padding(
                                 padding: const EdgeInsets.all(11),
-                                child: SvgPicture.asset(
-                                  "assets/heartline.svg",
+                                child: SvgPicture.asset(favorites == false ?
+                                  "assets/heartline.svg" : "assets/heart.svg",
                                   color: Colors.white,
                                 ),
                               ),
-                              onTap: () {},
+                              onTap: () {
+                                setState(() {
+                                  favorites == true ? favorites = false : favorites = true;
+                                });
+                              },
                             ),
                           ),
                         ),

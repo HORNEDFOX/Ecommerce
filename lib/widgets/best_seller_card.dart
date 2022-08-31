@@ -8,10 +8,14 @@ class BestSellerCard extends StatefulWidget {
   const BestSellerCard({Key? key, required this.bestSeller}) : super(key: key);
 
   @override
-  _BestSellerCardState createState() => _BestSellerCardState();
+  _BestSellerCardState createState() => _BestSellerCardState(favorites: bestSeller.is_favorites);
 }
 
 class _BestSellerCardState extends State<BestSellerCard> {
+  bool favorites;
+
+  _BestSellerCardState({required this.favorites});
+
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -110,13 +114,17 @@ class _BestSellerCardState extends State<BestSellerCard> {
                           child: InkWell(
                             child: Padding(
                               padding: const EdgeInsets.only(left: 8, right: 8, top: 8, bottom: 6.5),
-                              child: SvgPicture.asset(
-                                "assets/heartline.svg",
+                              child: SvgPicture.asset(favorites == false ?
+                                "assets/heartline.svg" : "assets/heart.svg",
                                 height: 15,
                                 color: Color.fromRGBO(255, 110, 78, 1),
                               ),
                             ),
-                            onTap: () {},
+                            onTap: () {
+                              setState(() {
+                                favorites == true ? favorites = false : favorites = true;
+                              });
+                            },
                           ),
                         ),
                       ),
